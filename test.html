@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-SCIH - Kesses Smart Circular Industrial Hub</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/white.css">
+  <style>
+    :root {
+    --primary-green: #22c55e;
+    --dark-green: #15803d;
+    --light-green: #86efac;
+    --bg-green: #f0fdf4;
+    --tri-size: 120px;
+    --tri-bg: crimson;
+    --tri-image: none;
+    --tri-bg-size: cover;
+    --tri-bg-position: center;
+    --tri-opacity: 1;
+    --tri-rotate: 0deg;
+    --tri-z: 1;
+    }
+    
+    .reveal {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .reveal h1 {
+      font-size: 2.8em;
+      color: var(--dark-green);
+      font-weight: 700;
+      margin-bottom: 0.2em;
+    }
+    
+    .project-subtitle {
+      font-size: 1.4em;
+      color: var(--primary-green);
+      font-weight: 600;
+      margin-bottom: 0.5em;
+    }
+    
+    .tagline {
+      font-size: 1.3em;
+      color: #374151;
+      font-style: italic;
+      margin-bottom: 1.5em;
+      padding: 15px 30px;
+      background: var(--bg-green);
+      border-radius: 10px;
+    }
+    
+    .branding {
+      top: 30px;
+      right: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1em;
+      color: var(--dark-green);
+      font-weight: 600;
+      z-index: 100;
+    }
+    
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+    }
+    
+    .reveal .slides section {
+      background: linear-gradient(135deg, #fafafa 0%, #f0fdf4 100%);
+      overflow: hidden;
+       height: 100%;
+      position: relative;
+    }
+
+
+    .tri{
+
+        width: var(--tri-size);
+        height: var(--tri-size);
+
+        position: relative;
+
+        overflow: hidden;
+
+        opacity: var(--tri-opacity);
+
+        z-index: var(--tri-z);
+
+        transform: rotate(var(--tri-rotate));
+
+        background: var(--tri-bg);
+
+        background-image: var(--tri-image);
+
+        background-size: var(--tri-bg-size);
+
+        background-position: var(--tri-bg-position);
+
+        background-repeat: no-repeat;
+
+    }
+
+
+    /* UP */
+    .tri-up{
+
+        clip-path: polygon(
+            50% 0%,
+            0% 100%,
+            100% 100%
+        );
+
+    }
+
+
+    /* DOWN */
+    .tri-down{
+
+        clip-path: polygon(
+            0% 0%,
+            100% 0%,
+            50% 100%
+        );
+
+    }
+
+
+    /* LEFT */
+    .tri-left{
+
+        clip-path: polygon(
+            100% 0%,
+            100% 100%,
+            0% 50%
+        );
+
+    }
+
+
+    /* RIGHT */
+    .tri-right{
+
+        clip-path: polygon(
+            0% 0%,
+            100% 50%,
+            0% 100%
+        );
+
+    }
+
+
+    /* TOP LEFT */
+    .tri-tl{
+
+        clip-path: polygon(
+            0% 0%,
+            100% 0%,
+            0% 100%
+        );
+
+    }
+
+
+    /* TOP RIGHT */
+    .tri-tr{
+
+        clip-path: polygon(
+            100% 0%,
+            100% 100%,
+            0% 0%
+        );
+
+    }
+
+
+    /* BOTTOM LEFT */
+    .tri-bl{
+
+        clip-path: polygon(
+            0% 100%,
+            0% 0%,
+            100% 100%
+        );
+
+    }
+
+
+    /* BOTTOM RIGHT */
+    .tri-br{
+
+        clip-path: polygon(
+            100% 100%,
+            0% 100%,
+            100% 0%
+        );
+
+    }
+
+    .tri-xs{
+        --tri-size: 40px;
+    }
+
+    .tri-sm{
+        --tri-size: 80px;
+    }
+
+    .tri-md{
+        --tri-size: 120px;
+    }
+
+    .tri-lg{
+        --tri-size: 200px;
+    }
+
+    .tri-xl{
+        --tri-size: 320px;
+    }
+
+    .tri-xxl{
+        --tri-size: 500px;
+    }
+
+    .tri-primary{
+        --tri-bg: #2563eb;
+    }
+
+    .tri-secondary{
+        --tri-bg: #64748b;
+    }
+
+    .tri-success{
+        --tri-bg: #16a34a;
+    }
+
+    .tri-danger{
+        --tri-bg: #dc2626;
+    }
+
+    .tri-warning{
+        --tri-bg: #f59e0b;
+    }
+
+    .tri-dark{
+        --tri-bg: #111827;
+    }
+
+    .tri-light{
+        --tri-bg: #f3f4f6;
+    }
+
+    .tri-op-10{
+        --tri-opacity: 0.1;
+    }
+
+    .tri-op-20{
+        --tri-opacity: 0.2;
+    }
+
+    .tri-op-30{
+        --tri-opacity: 0.3;
+    }
+
+    .tri-op-40{
+        --tri-opacity: 0.4;
+    }
+
+    .tri-op-50{
+        --tri-opacity: 0.5;
+    }
+
+    .tri-op-60{
+        --tri-opacity: 0.6;
+    }
+
+    .tri-op-70{
+        --tri-opacity: 0.7;
+    }
+
+    .tri-op-80{
+        --tri-opacity: 0.8;
+    }
+
+    .tri-op-90{
+        --tri-opacity: 0.9;
+    }
+
+    .tri-absolute{
+        position: absolute;
+    }
+
+    .tri-fixed{
+        position: fixed;
+    }
+
+    .tri-relative{
+        position: relative;
+    }
+
+    .tri-r-45{
+        --tri-rotate: 45deg;
+    }
+
+    .tri-r-90{
+        --tri-rotate: 90deg;
+    }
+
+    .tri-r-180{
+        --tri-rotate: 180deg;
+    }
+
+    .tri-r-270{
+        --tri-rotate: 270deg;
+    }
+
+    .tri-z-1{
+        --tri-z: 1;
+    }
+
+    .tri-z-10{
+        --tri-z: 10;
+    }
+
+    .tri-z-50{
+        --tri-z: 50;
+    }
+
+    .tri-z-100{
+        --tri-z: 100;
+    }
+
+
+
+    .tri-image{
+
+        background-image: var(--tri-image);
+
+        background-size: cover;
+
+        background-position: center;
+
+        background-repeat: no-repeat;
+
+    }
+
+
+    .tri-gradient-purple{
+
+        --tri-bg:
+            linear-gradient(
+                45deg,
+                #9333ea,
+                #3b82f6
+            );
+
+    }
+
+    .tri-gradient-orange{
+
+        --tri-bg:
+            linear-gradient(
+                45deg,
+                #f97316,
+                #facc15
+            );
+
+    }
+
+    .tri-gradient-green{
+
+        --tri-bg:
+            linear-gradient(
+                45deg,
+                #22c55e,
+                #06b6d4
+            );
+
+    }
+
+
+    .tri-shadow-sm{
+        box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    }
+
+    .tri-shadow{
+        box-shadow: 0 10px 20px rgba(0,0,0,.25);
+    }
+
+    .tri-shadow-lg{
+        box-shadow: 0 20px 40px rgba(0,0,0,.35);
+    }
+
+
+    .tri-blur-sm{
+        filter: blur(2px);
+    }
+
+    .tri-blur{
+        filter: blur(5px);
+    }
+
+    .tri-blur-lg{
+        filter: blur(12px);
+    }
+
+
+
+    .card{
+
+        position: relative;
+
+        overflow: hidden;
+
+    }
+
+    .tri-hover-grow{
+        transition: .3s;
+    }
+
+    .tri-hover-grow:hover{
+        transform:
+            scale(1.1)
+            rotate(var(--tri-rotate));
+    }
+
+
+    .tri-hover-spin{
+        transition: .6s;
+    }
+
+    .tri-hover-spin:hover{
+        transform:
+            rotate(360deg);
+    }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <section data-background-color="#f0fdf4">
+        <div style="
+            position: absolute;
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(34,197,94,0.25), transparent 60%);
+            top: -200px;
+            left: -200px;
+            filter: blur(40px);
+            "></div>
+
+            <div style="
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.20), transparent 60%);
+            bottom: -200px;
+            right: -200px;
+            filter: blur(40px);
+            "></div>
+        <!-- <div
+            class="
+                tri
+                tri-right
+                tri-absolute
+                tri-op-20
+                tri-z-1
+            "
+
+            style="
+                --tri-size: 900px;
+                --tri-bg: linear-gradient(
+                    135deg,
+                    #22c55e,
+                    #15803d
+                );
+
+                left:-250px;
+                top:0;
+            "
+        ></div>
+        <div
+            class="
+                tri
+                tri-br
+                tri-absolute
+                tri-shadow-lg
+                tri-z-10
+                tri-image
+            "
+
+            style="
+                --tri-size: 350px;
+
+                --tri-image:url('./mpw_header_export1.jpg.webp');
+
+                left:0;
+                bottom:0;
+            "
+        ></div> -->
+      <div class="branding">
+        <i class="fas fa-university"></i>
+        <span>Moi University | Kesses</span>
+      </div>
+      
+      <div class="main-content">
+        <h1>K-SCIH</h1>
+        <div class="project-subtitle">Kesses Smart Circular Industrial Hub</div>
+        
+        <div class="tagline">
+          "Turning Waste Into Wealth, Energy, and Opportunity"
+        </div>
+        <div style="
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            ">
+            
+            <span style="
+                padding: 6px 14px;
+                background: #dcfce7;
+                border-radius: 20px;
+                font-size: 0.85em;
+                color: #166534;
+                font-weight: 500;
+            ">Smart Bins</span>
+
+            <span style="
+                padding: 6px 14px;
+                background: #dbeafe;
+                border-radius: 20px;
+                font-size: 0.85em;
+                color: #1e40af;
+                font-weight: 500;
+            ">Biogas Energy</span>
+
+            <span style="
+                padding: 6px 14px;
+                background: #fef3c7;
+                border-radius: 20px;
+                font-size: 0.85em;
+                color: #92400e;
+                font-weight: 500;
+            ">Glass-to-Tiles</span>
+
+            <span style="
+                padding: 6px 14px;
+                background: #ede9fe;
+                border-radius: 20px;
+                font-size: 0.85em;
+                color: #5b21b6;
+                font-weight: 500;
+            ">Plastic Products</span>
+
+            <span style="
+                padding: 6px 14px;
+                background: #fee2e2;
+                border-radius: 20px;
+                font-size: 0.85em;
+                color: #991b1b;
+                font-weight: 500;
+            ">E-Waste Recovery</span>
+
+            </div>
+      </div>
+    </section>
+
+    <section data-background-color="#fef2f2">
+        <div style="
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=1920') center/cover;
+            opacity: 0.08;
+        "></div>
+        
+        <div style="
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(239,68,68,0.15), transparent 60%);
+            top: -100px;
+            right: -200px;
+            filter: blur(40px);
+        "></div>
+
+        <div class="branding">
+            <i class="fas fa-university" style="color: var(--dark-green);"></i>
+            <span>Moi University | Kesses</span>
+        </div>
+        
+
+        <h2 style="color: #dc2626; margin-bottom: 0.3em; font-size: 2.2em;">
+            <i class="fas fa-exclamation-triangle"></i> The Waste Crisis
+        </h2>
+        
+        <p style="color: #6b7280; font-size: 1.1em; margin-bottom: 30px;">
+            Urgent environmental challenges demanding immediate action
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 30px;">
+            <div style="
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #dc2626;
+            box-shadow: 0 4px 12px rgba(220,38,38,0.1);
+            ">
+            <i class="fas fa-bottle-water" style="font-size: 1.8em; color: #dc2626; margin-bottom: 8px;"></i>
+            <h4 style="margin: 0 0 5px 0; color: var(--dark-green); font-size: 0.95em;">Plastic Pollution</h4>
+            <p style="margin: 0; font-size: 0.8em; color: #6b7280;">80% non-biodegradable waste</p>
+            </div>
+
+            <div style="
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #ea580c;
+            box-shadow: 0 4px 12px rgba(234,88,12,0.1);
+            ">
+            <i class="fas fa-wine-bottle" style="font-size: 1.8em; color: #ea580c; margin-bottom: 8px;"></i>
+            <h4 style="margin: 0 0 5px 0; color: var(--dark-green); font-size: 0.95em;">Glass Disposal</h4>
+            <p style="margin: 0; font-size: 0.8em; color: #6b7280;">Soil & water contamination</p>
+            </div>
+
+            <div style="
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #65a30d;
+            box-shadow: 0 4px 12px rgba(101,163,13,0.1);
+            ">
+            <i class="fas fa-leaf" style="font-size: 1.8em; color: #65a30d; margin-bottom: 8px;"></i>
+            <h4 style="margin: 0 0 5px 0; color: var(--dark-green); font-size: 0.95em;">Organic Waste</h4>
+            <p style="margin: 0; font-size: 0.8em; color: #6b7280;">Methane emissions rising</p>
+            </div>
+
+            <div style="
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #7c3aed;
+            box-shadow: 0 4px 12px rgba(124,58,237,0.1);
+            ">
+            <i class="fas fa-microchip" style="font-size: 1.8em; color: #7c3aed; margin-bottom: 8px;"></i>
+            <h4 style="margin: 0 0 5px 0; color: var(--dark-green); font-size: 0.95em;">E-Waste Toxicity</h4>
+            <p style="margin: 0; font-size: 0.8em; color: #6b7280;">Heavy metal pollution</p>
+            </div>
+
+            <div style="
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #db2777;
+            box-shadow: 0 4px 12px rgba(219,39,119,0.1);
+            ">
+            <i class="fas fa-shirt" style="font-size: 1.8em; color: #db2777; margin-bottom: 8px;"></i>
+            <h4 style="margin: 0 0 5px 0; color: var(--dark-green); font-size: 0.95em;">Textile Waste</h4>
+            <p style="margin: 0; font-size: 0.8em; color: #6b7280;">Fast fashion overflow</p>
+            </div>
+
+            <div style="
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #0891b2;
+            box-shadow: 0 4px 12px rgba(8,145,178,0.1);
+            ">
+            <i class="fas fa-dumpster" style="font-size: 1.8em; color: #0891b2; margin-bottom: 8px;"></i>
+            <h4 style="margin: 0 0 5px 0; color: var(--dark-green); font-size: 0.95em;">Landfill Crisis</h4>
+            <p style="margin: 0; font-size: 0.8em; color: #6b7280;">90% overdependence</p>
+            </div>
+
+            <div style="
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #475569;
+            box-shadow: 0 4px 12px rgba(71,85,105,0.1);
+            ">
+            <i class="fas fa-rotate" style="font-size: 1.8em; color: #475569; margin-bottom: 8px;"></i>
+            <h4 style="margin: 0 0 5px 0; color: var(--dark-green); font-size: 0.95em;">Poor Segregation</h4>
+            <p style="margin: 0; font-size: 0.8em; color: #6b7280;">Mixed waste streams</p>
+            </div>
+
+            <div style="
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #ca8a04;
+            box-shadow: 0 4px 12px rgba(202,138,4,0.1);
+            ">
+            <i class="fas fa-recycle" style="font-size: 1.8em; color: #ca8a04; margin-bottom: 8px;"></i>
+            <h4 style="margin: 0 0 5px 0; color: var(--dark-green); font-size: 0.95em;">Low Recycling</h4>
+            <p style="margin: 0; font-size: 0.8em; color: #6b7280;"><15% participation rate</p>
+            </div>
+        </div>
+
+        <div style="
+            background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+            padding: 20px 25px;
+            border-radius: 12px;
+            border: 2px dashed #dc2626;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        ">
+            <div style="text-align: center;">
+            <i class="fas fa-city" style="font-size: 2em; color: #dc2626; margin-bottom: 8px;"></i>
+            <div style="font-weight: 600; color: var(--dark-green);">Rapid Urbanization</div>
+            <div style="font-size: 0.85em; color: #6b7280;">Waste generation ↑ 300%</div>
+            </div>
+
+            <div style="text-align: center;">
+            <i class="fas fa-industry" style="font-size: 2em; color: #dc2626; margin-bottom: 8px;"></i>
+            <div style="font-weight: 600; color: var(--dark-green);">Industrial Growth</div>
+            <div style="font-size: 0.85em; color: #6b7280;">Unmanaged waste streams</div>
+            </div>
+
+            <div style="text-align: center;">
+            <i class="fas fa-water" style="font-size: 2em; color: #dc2626; margin-bottom: 8px;"></i>
+            <div style="font-weight: 600; color: var(--dark-green);">Water Pollution</div>
+            <div style="font-size: 0.85em; color: #6b7280;">Communities at risk</div>
+            </div>
+
+            <div style="text-align: center;">
+            <i class="fas fa-cloud" style="font-size: 2em; color: #dc2626; margin-bottom: 8px;"></i>
+            <div style="font-weight: 600; color: var(--dark-green);">Air Quality</div>
+            <div style="font-size: 0.85em; color: #6b7280;">Burning emissions</div>
+            </div>
+        </div>
+
+        <div
+            class="tri tri-bl tri-absolute tri-op-10 tri-z-1"
+            style="--tri-size: 600px; --tri-bg: #dc2626; bottom: -100px; left: -200px;"
+        ></div>
+        </section>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: false,
+    transition: 'fade',
+    backgroundTransition: 'fade',
+    controls: true,
+    progress: true,
+    center: false,
+    width: 1400,
+    height: 900,
+    margin: 0.05
+  });
+</script>
+
+</body>
+</html>
